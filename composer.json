@@ -1,0 +1,58 @@
+{
+  "name": "minchao/mitake-laravel",
+  "description": "Laravel Package for Mitake's PHP SDK",
+  "type": "library",
+  "keywords": [
+    "mitake",
+    "mitake-service-provider",
+    "laravel-service-provider"
+  ],
+  "homepage": "https://github.com/minchao/mitake-laravel",
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "https://github.com/minchao/mitake-laravel/issues"
+  },
+  "require": {
+    "php": ">=5.6",
+    "illuminate/support": "^5.4",
+    "minchao/mitake-php": "^0.1.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^3.4",
+    "phpunit/phpunit": "^5.7",
+    "squizlabs/php_codesniffer": "^3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mitake\\Laravel\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mitake\\Laravel\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "check": [
+      "@cs-check",
+      "@test"
+    ],
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf",
+    "test": "phpunit",
+    "coverage-html": "phpunit --coverage-html=build/coverage-html"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Mitake\\Laravel\\MitakeServiceProvider"
+      ],
+      "aliases": {
+        "Mitake": "Mitake\\Laravel\\Facade\\Mitake"
+      }
+    }
+  }
+}
