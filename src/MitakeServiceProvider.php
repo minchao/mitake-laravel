@@ -5,6 +5,7 @@ namespace Mitake\Laravel;
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Lumen\Application as LumenApplication;
 use Mitake\Client;
 
 class MitakeServiceProvider extends ServiceProvider
@@ -27,6 +28,8 @@ class MitakeServiceProvider extends ServiceProvider
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$dist => config_path('mitake.php')]);
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('mitake');
         }
 
         $this->mergeConfigFrom($dist, 'mitake');
