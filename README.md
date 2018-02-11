@@ -57,9 +57,16 @@ Register the `Mitake\Laravel\MitakeServiceProvider` in your `bootstrap/app.php`:
     $app->register(Mitake\Laravel\MitakeServiceProvider::class);
 ```
 
+Copy the `mitake.php` config file in to your project:
+
+```
+mkdir config
+cp vendor/minchao/mitake-laravel/config/mitake.php config/mitake.php
+```
+
 ## Configuration
 
-Publish the package configuration using Artisan.
+Publish the package configuration using Artisan (Lumen doesn't support).
 
 ```
 php artisan vendor:publish --provider="Mitake\Laravel\MitakeServiceProvider"
