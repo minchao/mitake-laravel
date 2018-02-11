@@ -3,10 +3,9 @@
 [![Build Status](https://travis-ci.org/minchao/mitake-laravel.svg?branch=master)](https://travis-ci.org/minchao/mitake-laravel)
 [![Latest Stable Version](https://poser.pugx.org/minchao/mitake-laravel/v/stable)](https://packagist.org/packages/minchao/mitake-laravel)
 [![Latest Unstable Version](https://poser.pugx.org/minchao/mitake-laravel/v/unstable)](https://packagist.org/packages/minchao/mitake-laravel)
-[![License](https://poser.pugx.org/minchao/mitake-laravel/license)](https://packagist.org/packages/minchao/mitake-laravel)
 [![composer.lock](https://poser.pugx.org/minchao/mitake-laravel/composerlock)](https://packagist.org/packages/minchao/mitake-laravel)
 
-This is a simple Laravel service provider for making it easy to access the [Mitake PHP SDK](https://github.com/minchao/mitake-php).
+This is a simple Laravel service provider for making it easy to access the [Mitake PHP SDK](https://github.com/minchao/mitake-php) in your Laravel and Lumen applications.
 
 ## Installation
 
@@ -17,6 +16,46 @@ composer require minchao/mitake-laravel
 ``` 
 
 To use the Mitake service provider, you must register the provider when bootstrapping your application.
+
+### Laravel
+
+#### Laravel 5.5 and above
+
+The package will automatically register provider and facade.
+
+#### Laravel 5.4 and below
+
+Add `Mitake\Laravel\MitakeServiceProvider` to the `providers` section of your `config/app.php`:
+
+```php
+    'providers' => [
+        // ...
+        Mitake\Laravel\MitakeServiceProvider::class,
+    ];
+```
+
+Add Mitake facade to the `aliases` section of your `config/app.php`:
+
+```php
+    'aliases' => [
+        // ...
+        'Mitake' => Mitake\Laravel\Facade\Mitake::class,
+    ];
+```
+
+Or use the facade class directly:
+
+```php
+use Mitake\Laravel\Facade\Mitake;
+```
+
+### Lumen
+
+Register the `Mitake\Laravel\MitakeServiceProvider` in your `bootstrap/app.php`:
+
+```php
+    $app->register(Mitake\Laravel\MitakeServiceProvider::class);
+```
 
 ## Configuration
 
@@ -42,16 +81,16 @@ $mitake = app(\Mitake\Client::class);
 
 $message = (new \Mitake\Message\Message())
     ->setDstaddr('0987654321')
-    ->setSmbody('Hello, 世界');
+    ->setSmbody('Hello, Laravel IoC Container');
 $result = $mitake->send($message);
 ```
 
-Or, If the Mitake facade is registered within the `aliases` section of `config/app.php`, you can use the following:
+Or, you can use the Mitake facade:
 
 ```php
 $message = (new \Mitake\Message\Message())
     ->setDstaddr('0987654321')
-    ->setSmbody('Hello, 世界');
+    ->setSmbody('Hello, Facade');
 $result = Mitake::send($message);
 ```
 
