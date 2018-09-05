@@ -15,7 +15,7 @@
   "require": {
     "php": ">=5.6",
     "illuminate/support": "^5.4",
-    "minchao/mitake-php": "^0.1.0"
+    "minchao/mitake-php": "^0.3.0"
   },
   "require-dev": {
     "orchestra/testbench": "^3.4",
